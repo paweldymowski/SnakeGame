@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QGraphicsScene>
-#include <QGraphicsRectItem>
+#include <snakehead.h>
 #include <QGraphicsView>
 
 int main(int argc, char *argv[])
@@ -9,10 +9,13 @@ int main(int argc, char *argv[])
 
     QGraphicsScene * scene = new QGraphicsScene();
 
-    QGraphicsRectItem * rect = new QGraphicsRectItem();
+    SnakeHead * rect = new SnakeHead();
     rect->setRect(0,0, 20, 20);
 
     scene->addItem(rect);
+
+    rect->setFlag(QGraphicsItem::ItemIsFocusable);
+    rect->setFocus();
 
     QGraphicsView * view = new QGraphicsView(scene);
 
