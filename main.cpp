@@ -9,20 +9,19 @@ int main(int argc, char *argv[])
 
     QGraphicsScene * scene = new QGraphicsScene();
 
-    SnakeHead * rect = new SnakeHead();
-    rect->setRect(0,0, 20, 20);
+    SnakeHead * snakeHead = new SnakeHead();
 
-    scene->addItem(rect);
+    scene->addItem(snakeHead);
 
-    rect->setFlag(QGraphicsItem::ItemIsFocusable);
-    rect->setFocus();
+    snakeHead->setFlag(QGraphicsItem::ItemIsFocusable);
+    snakeHead->setFocus();
 
     QGraphicsView * view = new QGraphicsView(scene);
 
     view->show();
+    view->setFixedSize(800,600);
 
-
-
+    scene->setSceneRect(0,0,800,600);
 
     return a.exec();
 }
