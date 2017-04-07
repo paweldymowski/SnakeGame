@@ -18,10 +18,13 @@ int main(int argc, char *argv[])
 
     QGraphicsView * view = new QGraphicsView(scene);
 
-    view->show();
-    view->setFixedSize(800,600);
+    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    scene->setSceneRect(0,0,800,600);
+    view->show();
+    view->setFixedSize(200,200);
+
+    scene->setSceneRect(0,0,200,200);
 
     return a.exec();
 }

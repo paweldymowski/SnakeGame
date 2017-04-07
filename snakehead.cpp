@@ -7,8 +7,10 @@
 #include <QDebug>
 
 SnakeHead::SnakeHead(){
-    setRect(400,300,40,40);
+    setRect(100,100,20,20);
     setBrush(QBrush(QColor(0,0,0,150)));
+
+    direction = 2;
 
     QTimer * timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
@@ -34,32 +36,30 @@ void SnakeHead::keyPressEvent(QKeyEvent *event)
     }
 }
 
-int direction = 1;
-
 void SnakeHead::move()
 {
     if (direction == 1){
-        setPos(x(), y()-40);
+        setPos(x(), y()-20);
     }
     else if (direction == 2){
-        setPos(x()+40, y());
+        setPos(x()+20, y());
     }
     else if (direction == 3){
-        setPos(x(), y()+40);
+        setPos(x(), y()+20);
     }
     else if (direction == 4){
-        setPos(x()-40, y());
+        setPos(x()-20, y());
     }
 
-    if (pos().y() < -400 ||
-        pos().y() > 400 ||
-        pos().x() < -300 ||
-        pos().x() > 300)
+    if (pos().y() < -100 ||
+        pos().y() > 100 ||
+        pos().x() < -100 ||
+        pos().x() > 100)
 
     {
         scene()->removeItem(this);
         delete this;
-        qDebug() << pos().y() << "GAME OVER!";
+        qDebug() << pos().y() << "," << pos().x()  << "GAME OVER!";
     }
 
 }
