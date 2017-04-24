@@ -7,8 +7,14 @@
 #include <QDebug>
 
 SnakeHead::SnakeHead(){
-    setRect(100,100,20,20);
-    setBrush(QBrush(QColor(0,0,0,150)));
+
+    setRect(0,0,20,20);
+    setPos(100,100);
+    setBrush(QBrush(QColor(255,0,0,0)));
+
+    //snakeTail.push(std::make_pair(pos().x(), pos().y()));
+    //snakeTail.push(std::make_pair(pos().x() - 20, pos().y()));
+    //snakeTail.push(std::make_pair(pos().x() - 40, pos().y()));
 
     direction = 2;
 
@@ -16,9 +22,9 @@ SnakeHead::SnakeHead(){
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
 
     timer->start(500);
+    qDebug() << "snakeHead created";
 
 }
-
 
 void SnakeHead::keyPressEvent(QKeyEvent *event)
 {
@@ -51,15 +57,16 @@ void SnakeHead::move()
         setPos(x()-20, y());
     }
 
-    if (pos().y() < -100 ||
-        pos().y() > 100 ||
-        pos().x() < -100 ||
-        pos().x() > 100)
+    if (pos().y() < 20 ||
+        pos().y() > 560 ||
+        pos().x() < 20 ||
+        pos().x() > 760)
 
     {
         scene()->removeItem(this);
         delete this;
         qDebug() << pos().y() << "," << pos().x()  << "GAME OVER!";
     }
+    qDebug() << "snake moved";
 
 }

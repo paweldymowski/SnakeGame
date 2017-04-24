@@ -24,7 +24,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp \
-    snakehead.cpp
+    snakehead.cpp \
+    border.cpp \
+    food.cpp \
+    snakebodypart.cpp
 
 HEADERS  += \
-    snakehead.h
+    snakehead.h \
+    border.h \
+    food.h \
+    snakebodypart.h
