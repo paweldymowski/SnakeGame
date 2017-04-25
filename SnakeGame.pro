@@ -27,10 +27,12 @@ SOURCES += main.cpp \
     snakehead.cpp \
     border.cpp \
     food.cpp \
-    snakebodypart.cpp
+    snakebodypart.cpp \
+    game.cpp
 
 HEADERS  += \
     snakehead.h \
     border.h \
     food.h \
-    snakebodypart.h
+    snakebodypart.h \
+    game.h

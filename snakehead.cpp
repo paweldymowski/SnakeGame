@@ -95,8 +95,23 @@ void SnakeHead::move()
     {
         scene()->removeItem(this);
         delete this;
-        qDebug() << pos().y() << "," << pos().x()  << "GAME OVER!";
+        qDebug() << pos().y() << "," << pos().x()  << "GAME OVER! Snake hit wall!";
     }
+
+    std::vector<SnakeBodyPart*>::iterator it = snakeTail.begin();
+
+    while (it != snakeTail.end()){
+        if ((**it).pos() == pos() ){
+            scene()->removeItem(this);
+            delete this;
+            qDebug() << "GAME OVER! Snake hit own body!";
+            break;
+        };
+        it++;
+
+    }
+
+
     qDebug() << "head moved";
 
 }
