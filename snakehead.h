@@ -7,20 +7,21 @@
 #include <vector>
 #include <utility>
 #include <snakebodypart.h>
+#include <food.h>
 
 class SnakeHead: public QObject, public QGraphicsRectItem{
     Q_OBJECT
 public:
     int direction;
+    bool foodEaten = false;
     SnakeHead();
     std::vector<SnakeBodyPart*> snakeTail;
     void keyPressEvent(QKeyEvent * event);
-    QTimer * timer = new QTimer();
+    void updateTail();
+    void makeNewSnakePartVisible();
 
 public slots:
     void move();
-    void updateTail();
-
 };
 
 #endif // SNAKEHEAD_H

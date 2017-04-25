@@ -8,33 +8,41 @@
 #include <QDebug>
 #include <vector>
 #include <utility>
+#include <QTimer>
+#include <game.h>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QGraphicsScene * scene = new QGraphicsScene();
 
-    SnakeHead * snakeHead = new SnakeHead();
-    Border * border = new Border();
-    Food * food = new Food();
 
-    scene->addItem(snakeHead);
-    scene->addItem(border);
-    scene->addItem(food);
+    Game * game = new Game();
 
-    std::vector<SnakeBodyPart*>::iterator it = snakeHead->snakeTail.begin();
+    game->scene = new QGraphicsScene();
+    game->snakeHead = new SnakeHead();
+    game->food = new Food();
 
-    while (it != snakeHead->snakeTail.end()){
-        scene->addItem(*it);
+    game->border = new Border();
+
+
+    game->scene->addItem(game->snakeHead);
+    game->scene->addItem(game->food);
+    game->scene->addItem(game->border);
+
+
+    std::vector<SnakeBodyPart*>::iterator it = game->snakeHead->snakeTail.begin();
+
+    while (it != game->snakeHead->snakeTail.end()){
+        game->scene->addItem(*it);
         it++;
     }
     qDebug() << "elementy dodane";
 
-    snakeHead->setFlag(QGraphicsItem::ItemIsFocusable);
-    snakeHead->setFocus();
+    game->snakeHead->setFlag(QGraphicsItem::ItemIsFocusable);
+    game->snakeHead->setFocus();
 
-    QGraphicsView * view = new QGraphicsView(scene);
+    QGraphicsView * view = new QGraphicsView(game->scene);
 
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -42,8 +50,13 @@ int main(int argc, char *argv[])
     view->show();
     view->setFixedSize(800,600);
 
-    scene->setSceneRect(0,0,800,600);
-    //snakeHead->timer->start(1000);
+    game->scene->setSceneRect(0,0,800,600);
+    QTimer * timer = new QTimer();
+    QObject::connect(timer, SIGNAL(timeout()), game->snakeHead, SLOT(move()));
+    QObject::connect(timer, SIGNAL(timeout()), game, SLOT(foodEaten()));
+    QObject::connect(timer, SIGNAL(timeout()), game, SLOT(makeNewSnakePartVisible()));
+
+    timer->start(100);
 
     return a.exec();
 }

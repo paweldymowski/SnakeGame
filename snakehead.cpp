@@ -1,4 +1,5 @@
 #include "snakehead.h"
+#include "food.h"
 #include <QKeyEvent>
 #include <QTimer>
 #include <QBrush>
@@ -20,10 +21,6 @@ SnakeHead::SnakeHead(){
 
     direction = 2;
 
-    QTimer * timer = new QTimer();
-    connect(timer, SIGNAL(timeout()), this, SLOT(move()));
-
-    timer->start(1000);
     qDebug() << "snakeHead created";
 
 }
@@ -45,22 +42,31 @@ void SnakeHead::keyPressEvent(QKeyEvent *event)
 }
 void SnakeHead::updateTail(){
 
-    std::vector<SnakeBodyPart*>::iterator it = snakeTail.begin();
+    if (!foodEaten) {
 
-    while (it != snakeTail.end()){
+        std::vector<SnakeBodyPart*>::iterator it = snakeTail.begin();
 
-        if (it != snakeTail.end() - 1){
-            (**it).setPos((**(it+1)).x(), (**(it+1)).y() );
-            it++;
-            qDebug() << "body part updated from x: " << (**it).x() << " y: " << (**it).y();
-            //qDebug() << "to x: " << (**(it+1)).x() << " y: " << (**(it+1)).y();
+        while (it != snakeTail.end()){
+
+            if (it != snakeTail.end() - 1){
+                (**it).setPos((**(it+1)).x(), (**(it+1)).y() );
+                it++;
+                qDebug() << "body part updated from x: " << (**it).x() << " y: " << (**it).y();
+                //qDebug() << "to x: " << (**(it+1)).x() << " y: " << (**(it+1)).y();
+            }
+            else {
+                (**it).setPos(x(), y() );
+                //qDebug() << "last body part updated from x: " << (**it).x() << " y: " << (**it).y();
+                //qDebug() << "to x: " << x() << " y: " << y();
+                it++;
+            }
         }
-        else {
-            (**it).setPos(x(), y() );
-            //qDebug() << "last body part updated from x: " << (**it).x() << " y: " << (**it).y();
-            //qDebug() << "to x: " << x() << " y: " << y();
-            it++;
-        }
+    }
+    else{
+        snakeTail.push_back(new SnakeBodyPart(x(), y()));
+        foodEaten = false;
+
+
     }
 }
 
