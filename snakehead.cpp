@@ -5,6 +5,8 @@
 #include <QColor>
 #include <QGraphicsScene>
 #include <QDebug>
+#include <typeinfo>
+#include <iterator>
 
 SnakeHead::SnakeHead(){
 
@@ -12,16 +14,16 @@ SnakeHead::SnakeHead(){
     setPos(100,100);
     setBrush(QBrush(QColor(255,0,0,0)));
 
-    //snakeTail.push(std::make_pair(pos().x(), pos().y()));
-    //snakeTail.push(std::make_pair(pos().x() - 20, pos().y()));
-    //snakeTail.push(std::make_pair(pos().x() - 40, pos().y()));
+    snakeTail.push_back(new SnakeBodyPart(x() - 60, y()));
+    snakeTail.push_back(new SnakeBodyPart(x() - 40, y()));
+    snakeTail.push_back(new SnakeBodyPart(x() - 20, y()));
 
     direction = 2;
 
     QTimer * timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
 
-    timer->start(500);
+    timer->start(1000);
     qDebug() << "snakeHead created";
 
 }
@@ -41,9 +43,31 @@ void SnakeHead::keyPressEvent(QKeyEvent *event)
         this->direction = 1;
     }
 }
+void SnakeHead::updateTail(){
+
+    std::vector<SnakeBodyPart*>::iterator it = snakeTail.begin();
+
+    while (it != snakeTail.end()){
+
+        if (it != snakeTail.end() - 1){
+            (**it).setPos((**(it+1)).x(), (**(it+1)).y() );
+            it++;
+            qDebug() << "body part updated from x: " << (**it).x() << " y: " << (**it).y();
+            //qDebug() << "to x: " << (**(it+1)).x() << " y: " << (**(it+1)).y();
+        }
+        else {
+            (**it).setPos(x(), y() );
+            //qDebug() << "last body part updated from x: " << (**it).x() << " y: " << (**it).y();
+            //qDebug() << "to x: " << x() << " y: " << y();
+            it++;
+        }
+    }
+}
 
 void SnakeHead::move()
 {
+    updateTail();
+
     if (direction == 1){
         setPos(x(), y()-20);
     }
@@ -67,6 +91,6 @@ void SnakeHead::move()
         delete this;
         qDebug() << pos().y() << "," << pos().x()  << "GAME OVER!";
     }
-    qDebug() << "snake moved";
+    qDebug() << "head moved";
 
 }

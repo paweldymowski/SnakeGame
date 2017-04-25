@@ -4,19 +4,22 @@
 #include <QGraphicsRectItem>
 #include <QObject>
 #include <QDebug>
-#include <queue>
+#include <vector>
 #include <utility>
+#include <snakebodypart.h>
 
 class SnakeHead: public QObject, public QGraphicsRectItem{
     Q_OBJECT
 public:
     int direction;
     SnakeHead();
-    std::queue<std::pair<int,int>> snakeTail;
+    std::vector<SnakeBodyPart*> snakeTail;
     void keyPressEvent(QKeyEvent * event);
+    QTimer * timer = new QTimer();
 
 public slots:
     void move();
+    void updateTail();
 
 };
 

@@ -6,13 +6,11 @@
 #include <QGraphicsScene>
 #include <QDebug>
 
-SnakeBodyPart::SnakeBodyPart(int x, int y, int dir){
+SnakeBodyPart::SnakeBodyPart(int x, int y){
 
     setRect(0,0,20,20);
     setPos(x, y);
-    setBrush(QBrush(QColor(255,0,255,155)));
-
-    direction = dir;
+    setBrush(QBrush(QColor(100,0,100,155)));
 
     qDebug() << "snakeBodyPart created";
 

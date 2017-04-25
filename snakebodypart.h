@@ -3,14 +3,16 @@
 
 #include <QGraphicsRectItem>
 #include <QObject>
-#include <QDebug>
+//#include <QDebug>
+#include <QTimer>
 
 
 class SnakeBodyPart: public QObject, public QGraphicsRectItem{
 
 public:
     int direction;
-    SnakeBodyPart(int x, int y, int dir);
+    SnakeBodyPart(int x, int y);
+    //QTimer * timer;
 
 };
 
