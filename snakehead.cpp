@@ -27,16 +27,20 @@ SnakeHead::SnakeHead(){
 
 void SnakeHead::keyPressEvent(QKeyEvent *event)
 {
-    if (event->key() == Qt::Key_Left){
+    if (event->key() == Qt::Key_Left && (this->direction != 2) ){
+        qDebug() << "direction changed from: " << this->direction << " to 4";
         this->direction = 4;
     }
-    else if (event->key() == Qt::Key_Right){
+    else if (event->key() == Qt::Key_Right && (this->direction != 4) ){
+        qDebug() << "direction changed from: " << this->direction << " to 2";
         this->direction = 2;
     }
-    else if (event->key() == Qt::Key_Down){
+    else if (event->key() == Qt::Key_Down && (this->direction != 1) ){
+        qDebug() << "direction changed from: " << this->direction << " to 3";
         this->direction = 3;
     }
-    else if (event->key() == Qt::Key_Up){
+    else if (event->key() == Qt::Key_Up && (this->direction != 3) ){
+        qDebug() << "direction changed from: " << this->direction << " to 1";
         this->direction = 1;
     }
 }
