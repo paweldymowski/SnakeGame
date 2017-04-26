@@ -5,6 +5,7 @@
 #include <snakehead.h>
 #include <border.h>
 #include <QGraphicsScene>
+#include <QTimer>
 
 class Game: public QObject{
     Q_OBJECT
@@ -15,6 +16,8 @@ public:
     SnakeHead * snakeHead;
     QGraphicsScene * scene;
     Border * border;
+    void createNewFood();
+    QTimer * timer;
 
 public slots:
     void foodEaten();

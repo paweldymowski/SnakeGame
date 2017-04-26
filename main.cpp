@@ -51,12 +51,12 @@ int main(int argc, char *argv[])
     view->setFixedSize(800,600);
 
     game->scene->setSceneRect(0,0,800,600);
-    QTimer * timer = new QTimer();
-    QObject::connect(timer, SIGNAL(timeout()), game->snakeHead, SLOT(move()));
-    QObject::connect(timer, SIGNAL(timeout()), game, SLOT(foodEaten()));
-    QObject::connect(timer, SIGNAL(timeout()), game, SLOT(makeNewSnakePartVisible()));
+    game->timer = new QTimer();
+    QObject::connect(game->timer, SIGNAL(timeout()), game->snakeHead, SLOT(move()));
+    QObject::connect(game->timer, SIGNAL(timeout()), game, SLOT(foodEaten()));
+    QObject::connect(game->timer, SIGNAL(timeout()), game, SLOT(makeNewSnakePartVisible()));
 
-    timer->start(100);
+    game->timer->start(500);
 
     return a.exec();
 }

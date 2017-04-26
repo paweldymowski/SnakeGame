@@ -10,6 +10,9 @@ void Game::foodEaten(){
     if (food->pos() == snakeHead->pos()){
         qDebug() << "food eaten!";
         snakeHead->foodEaten = true;
+        scene->removeItem(food);
+        createNewFood();
+        timer->setInterval(timer->interval()-50);
     }
 
 }
@@ -20,4 +23,10 @@ void Game::makeNewSnakePartVisible(){
     scene->addItem(*it);
     qDebug() << "elementy dodane";
 
+}
+
+void Game::createNewFood(){
+
+    food = new Food();
+    scene->addItem(food);
 }
