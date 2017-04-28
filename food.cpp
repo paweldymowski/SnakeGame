@@ -1,9 +1,5 @@
 #include "food.h"
-#include <QBrush>
-#include <QColor>
-#include <QGraphicsScene>
 #include <QDebug>
-#include <QPen>
 #include <QPixmap>
 
 Food::Food(){

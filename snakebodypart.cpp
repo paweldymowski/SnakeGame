@@ -1,9 +1,4 @@
 #include "snakebodypart.h"
-#include <QKeyEvent>
-#include <QTimer>
-#include <QBrush>
-#include <QColor>
-#include <QGraphicsScene>
 #include <QDebug>
 #include <QPixmap>
 

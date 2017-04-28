@@ -11,7 +11,7 @@ class Game: public QObject{
     Q_OBJECT
 
 public:
-    //Game();
+    Game();
     Food * food;
     SnakeHead * snakeHead;
     QGraphicsScene * scene;

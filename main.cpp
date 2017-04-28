@@ -15,29 +15,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-
-
     Game * game = new Game();
-
-    game->scene = new QGraphicsScene();
-    game->snakeHead = new SnakeHead();
-    game->food = new Food();
-
-    game->border = new Border();
-
-
-    game->scene->addItem(game->snakeHead);
-    game->scene->addItem(game->food);
-    game->scene->addItem(game->border);
-
-
-    std::vector<SnakeBodyPart*>::iterator it = game->snakeHead->snakeTail.begin();
-
-    while (it != game->snakeHead->snakeTail.end()){
-        game->scene->addItem(*it);
-        it++;
-    }
-    qDebug() << "elementy dodane";
 
     game->snakeHead->setFlag(QGraphicsItem::ItemIsFocusable);
     game->snakeHead->setFocus();
