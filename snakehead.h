@@ -1,18 +1,19 @@
 #ifndef SNAKEHEAD_H
 #define SNAKEHEAD_H
 
-#include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
 #include <QObject>
 #include <QDebug>
 #include <vector>
 #include <utility>
 #include <snakebodypart.h>
 #include <food.h>
+#include <directions.h>
 
-class SnakeHead: public QObject, public QGraphicsRectItem{
+class SnakeHead: public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
-    int direction;
+    directions direction;
     bool foodEaten = false;
     SnakeHead();
     std::vector<SnakeBodyPart*> snakeTail;

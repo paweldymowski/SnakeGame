@@ -8,18 +8,19 @@
 #include <QDebug>
 #include <typeinfo>
 #include <iterator>
+#include <directions.h>
 
 SnakeHead::SnakeHead(){
 
-    setRect(0,0,20,20);
+    //setRect(0,0,20,20);
+    setPixmap(QPixmap(":/images/head.png"));
     setPos(100,100);
-    setBrush(QBrush(QColor(255,0,0,0)));
-
+    setTransformOriginPoint(10, 10);
     snakeTail.push_back(new SnakeBodyPart(x() - 60, y()));
     snakeTail.push_back(new SnakeBodyPart(x() - 40, y()));
     snakeTail.push_back(new SnakeBodyPart(x() - 20, y()));
 
-    direction = 2;
+    direction = moveRight;
 
     qDebug() << "snakeHead created";
 
@@ -27,21 +28,29 @@ SnakeHead::SnakeHead(){
 
 void SnakeHead::keyPressEvent(QKeyEvent *event)
 {
-    if (event->key() == Qt::Key_Left && (this->direction != 2) ){
-        qDebug() << "direction changed from: " << this->direction << " to 4";
-        this->direction = 4;
+    if (event->key() == Qt::Key_Left && (this->direction != moveRight) ){
+        //if (direction == moveUp) setRotation(-90);
+        //else if (direction == moveDown) setRotation(90);
+        this->direction = moveLeft;
+        setRotation(-180);
     }
-    else if (event->key() == Qt::Key_Right && (this->direction != 4) ){
-        qDebug() << "direction changed from: " << this->direction << " to 2";
-        this->direction = 2;
+    else if (event->key() == Qt::Key_Right && (this->direction != moveLeft) ){
+        //if (direction == moveUp) setRotation(90);
+        //else if (direction == moveDown) setRotation(-90);
+        this->direction = moveRight;
+        setRotation(0);
     }
-    else if (event->key() == Qt::Key_Down && (this->direction != 1) ){
-        qDebug() << "direction changed from: " << this->direction << " to 3";
-        this->direction = 3;
+    else if (event->key() == Qt::Key_Down && (this->direction != moveUp) ){
+        //if (direction == moveRight) setRotation(90);
+        //else if (direction == moveLeft) setRotation(-90);
+        this->direction = moveDown;
+        setRotation(90);
     }
-    else if (event->key() == Qt::Key_Up && (this->direction != 3) ){
-        qDebug() << "direction changed from: " << this->direction << " to 1";
-        this->direction = 1;
+    else if (event->key() == Qt::Key_Up && (this->direction != moveDown) ){
+        //if (direction == moveLeft) setRotation(-90);
+        //else if (direction == moveRight) setRotation(90);
+        this->direction = moveUp;
+        setRotation(-90);
     }
 }
 void SnakeHead::updateTail(){
@@ -78,16 +87,16 @@ void SnakeHead::move()
 {
     updateTail();
 
-    if (direction == 1){
+    if (direction == moveUp){
         setPos(x(), y()-20);
     }
-    else if (direction == 2){
+    else if (direction == moveRight){
         setPos(x()+20, y());
     }
-    else if (direction == 3){
+    else if (direction == moveDown){
         setPos(x(), y()+20);
     }
-    else if (direction == 4){
+    else if (direction == moveLeft){
         setPos(x()-20, y());
     }
 

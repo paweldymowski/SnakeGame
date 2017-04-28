@@ -1,13 +1,13 @@
 #ifndef SNAKEBODYPART_H
 #define SNAKEBODYPART_H
 
-#include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
 #include <QObject>
 //#include <QDebug>
 #include <QTimer>
 
 
-class SnakeBodyPart: public QObject, public QGraphicsRectItem{
+class SnakeBodyPart: public QObject, public QGraphicsPixmapItem{
 
 public:
     int direction;
