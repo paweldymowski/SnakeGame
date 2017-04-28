@@ -35,4 +35,8 @@ HEADERS  += \
     border.h \
     food.h \
     snakebodypart.h \
-    game.h
+    game.h \
+    directions.h
+
+RESOURCES += \
+    res.qrc

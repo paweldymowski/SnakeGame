@@ -2,17 +2,13 @@
 #include "food.h"
 #include <QKeyEvent>
 #include <QTimer>
-#include <QBrush>
-#include <QColor>
 #include <QGraphicsScene>
 #include <QDebug>
-#include <typeinfo>
 #include <iterator>
 #include <directions.h>
 
 SnakeHead::SnakeHead(){
 
-    //setRect(0,0,20,20);
     setPixmap(QPixmap(":/images/head.png"));
     setPos(100,100);
     setTransformOriginPoint(10, 10);
@@ -23,32 +19,23 @@ SnakeHead::SnakeHead(){
     direction = moveRight;
 
     qDebug() << "snakeHead created";
-
 }
 
 void SnakeHead::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Left && (this->direction != moveRight) ){
-        //if (direction == moveUp) setRotation(-90);
-        //else if (direction == moveDown) setRotation(90);
         this->direction = moveLeft;
         setRotation(-180);
     }
     else if (event->key() == Qt::Key_Right && (this->direction != moveLeft) ){
-        //if (direction == moveUp) setRotation(90);
-        //else if (direction == moveDown) setRotation(-90);
         this->direction = moveRight;
         setRotation(0);
     }
     else if (event->key() == Qt::Key_Down && (this->direction != moveUp) ){
-        //if (direction == moveRight) setRotation(90);
-        //else if (direction == moveLeft) setRotation(-90);
         this->direction = moveDown;
         setRotation(90);
     }
     else if (event->key() == Qt::Key_Up && (this->direction != moveDown) ){
-        //if (direction == moveLeft) setRotation(-90);
-        //else if (direction == moveRight) setRotation(90);
         this->direction = moveUp;
         setRotation(-90);
     }
@@ -64,22 +51,18 @@ void SnakeHead::updateTail(){
             if (it != snakeTail.end() - 1){
                 (**it).setPos((**(it+1)).x(), (**(it+1)).y() );
                 it++;
-                qDebug() << "body part updated from x: " << (**it).x() << " y: " << (**it).y();
-                //qDebug() << "to x: " << (**(it+1)).x() << " y: " << (**(it+1)).y();
             }
             else {
                 (**it).setPos(x(), y() );
-                //qDebug() << "last body part updated from x: " << (**it).x() << " y: " << (**it).y();
-                //qDebug() << "to x: " << x() << " y: " << y();
                 it++;
             }
         }
     }
     else{
         snakeTail.push_back(new SnakeBodyPart(x(), y()));
+        std::vector<SnakeBodyPart*>::reverse_iterator it = snakeTail.rbegin();
+        scene()->addItem(*it);
         foodEaten = false;
-
-
     }
 }
 
@@ -121,10 +104,7 @@ void SnakeHead::move()
             break;
         };
         it++;
-
     }
-
-
     qDebug() << "head moved";
 
 }

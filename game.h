@@ -21,8 +21,6 @@ public:
 
 public slots:
     void foodEaten();
-    void makeNewSnakePartVisible();
-
 };
 
 

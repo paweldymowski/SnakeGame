@@ -8,5 +8,4 @@ enum directions{
     moveLeft,
 };
 
-
 #endif // DIRECTIONS_H
