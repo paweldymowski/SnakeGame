@@ -32,6 +32,7 @@ int main(int argc, char *argv[])
     game->timer = new QTimer();
     QObject::connect(game->timer, SIGNAL(timeout()), game->snakeHead, SLOT(move()));
     QObject::connect(game->timer, SIGNAL(timeout()), game, SLOT(foodEaten()));
+    QObject::connect(game->snakeHead, SIGNAL(spacePressed()), game, SLOT(gamePause()));
 
     game->timer->start(500);
 

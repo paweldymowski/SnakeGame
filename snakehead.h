@@ -24,6 +24,8 @@ public:
 
 public slots:
     void move();
+signals:
+    void spacePressed();
 };
 
 #endif // SNAKEHEAD_H

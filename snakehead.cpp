@@ -1,7 +1,6 @@
 #include "snakehead.h"
 #include "food.h"
 #include <QKeyEvent>
-#include <QTimer>
 #include <QGraphicsScene>
 #include <QDebug>
 #include <iterator>
@@ -51,8 +50,14 @@ void SnakeHead::keyPressEvent(QKeyEvent *event)
             keyPressed = true;
             qDebug() << "direction changed";
         }
+        else if (event->key() == Qt::Key_Space){
+            emit spacePressed();
+            qDebug() << "space pressed";
+        }
+
     }
 }
+
 
 void SnakeHead::updateTail(){
 

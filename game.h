@@ -18,9 +18,12 @@ public:
     Border * border;
     void createNewFood();
     QTimer * timer;
+    bool gamePaused;
 
 public slots:
     void foodEaten();
+    void gamePause();
+
 };
 
 
