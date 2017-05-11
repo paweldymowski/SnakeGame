@@ -16,30 +16,44 @@ SnakeHead::SnakeHead(){
     snakeTail.push_back(new SnakeBodyPart(x() - 40, y()));
     snakeTail.push_back(new SnakeBodyPart(x() - 20, y()));
 
+    foodEaten = false;
+    keyPressed = false;
     direction = moveRight;
+
 
     qDebug() << "snakeHead created";
 }
 
 void SnakeHead::keyPressEvent(QKeyEvent *event)
 {
-    if (event->key() == Qt::Key_Left && (this->direction != moveRight) ){
-        this->direction = moveLeft;
-        setRotation(-180);
-    }
-    else if (event->key() == Qt::Key_Right && (this->direction != moveLeft) ){
-        this->direction = moveRight;
-        setRotation(0);
-    }
-    else if (event->key() == Qt::Key_Down && (this->direction != moveUp) ){
-        this->direction = moveDown;
-        setRotation(90);
-    }
-    else if (event->key() == Qt::Key_Up && (this->direction != moveDown) ){
-        this->direction = moveUp;
-        setRotation(-90);
+    if (!keyPressed){
+        if (event->key() == Qt::Key_Left && (direction != moveRight) && (direction != moveLeft)){
+            direction = moveLeft;
+            setRotation(-180);
+            keyPressed = true;
+            qDebug() << "direction changed";
+        }
+        else if (event->key() == Qt::Key_Right && (direction != moveLeft) && (direction != moveRight)){
+            direction = moveRight;
+            setRotation(0);
+            keyPressed = true;
+            qDebug() << "direction changed";
+        }
+        else if (event->key() == Qt::Key_Down && (direction != moveUp) && (direction != moveDown)){
+            direction = moveDown;
+            setRotation(90);
+            keyPressed = true;
+            qDebug() << "direction changed";
+        }
+        else if (event->key() == Qt::Key_Up && (direction != moveDown) && (direction != moveUp)){
+            direction = moveUp;
+            setRotation(-90);
+            keyPressed = true;
+            qDebug() << "direction changed";
+        }
     }
 }
+
 void SnakeHead::updateTail(){
 
     if (!foodEaten) {
@@ -69,6 +83,8 @@ void SnakeHead::updateTail(){
 void SnakeHead::move()
 {
     updateTail();
+    keyPressed = false;
+     qDebug() << "direction change reset";
 
     if (direction == moveUp){
         setPos(x(), y()-20);
@@ -106,5 +122,4 @@ void SnakeHead::move()
         it++;
     }
     qDebug() << "head moved";
-
 }

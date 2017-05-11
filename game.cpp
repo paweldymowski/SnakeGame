@@ -32,7 +32,9 @@ void Game::foodEaten(){
         qDebug() << "food eaten";
         snakeHead->foodEaten = true;
         scene->removeItem(food);
-        createNewFood();
+        for (int i = 0; i < 100; i++){
+            createNewFood();
+        }
         timer->setInterval(timer->interval()-50);
     }
 }

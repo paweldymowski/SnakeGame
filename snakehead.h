@@ -14,7 +14,8 @@ class SnakeHead: public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
     directions direction;
-    bool foodEaten = false;
+    bool foodEaten;
+    bool keyPressed;
     SnakeHead();
     std::vector<SnakeBodyPart*> snakeTail;
     void keyPressEvent(QKeyEvent * event);
