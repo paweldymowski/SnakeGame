@@ -51,8 +51,8 @@ void SnakeHead::keyPressEvent(QKeyEvent *event)
             qDebug() << "direction changed";
         }
         else if (event->key() == Qt::Key_Space){
-            emit spacePressed();
             qDebug() << "space pressed";
+            emit spacePressed();
         }
 
     }

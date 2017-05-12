@@ -6,6 +6,7 @@
 #include <border.h>
 #include <QGraphicsScene>
 #include <QTimer>
+#include <QGraphicsTextItem>
 
 class Game: public QObject{
     Q_OBJECT
@@ -19,6 +20,8 @@ public:
     void createNewFood();
     QTimer * timer;
     bool gamePaused;
+    int scores;
+    QGraphicsTextItem * scoreViewer;
 
 public slots:
     void foodEaten();

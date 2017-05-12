@@ -4,6 +4,8 @@
 #include <snakebodypart.h>
 #include <QDebug>
 #include <QKeyEvent>
+#include <QGraphicsTextItem>
+#include <string>
 
 Game::Game(){
 
@@ -13,6 +15,12 @@ Game::Game(){
     food = new Food();
     border = new Border();
     gamePaused = false;
+    scores = 0;
+    scoreViewer = new QGraphicsTextItem();
+    scoreViewer->setPos(0, 0);
+    scoreViewer->setPlainText(QString::number(scores));
+
+    scene->addItem(scoreViewer);
 
     scene->addItem(snakeHead);
     scene->addItem(food);
@@ -43,12 +51,15 @@ void Game::gamePause(){
 
 void Game::foodEaten(){
 
-    if (food->pos() == snakeHead->pos()){
+     if (food->pos() == snakeHead->pos()){
         qDebug() << "food eaten";
         snakeHead->foodEaten = true;
         scene->removeItem(food);
         createNewFood();
-        timer->setInterval(timer->interval()-50);
+        scores += 10;
+        scoreViewer->setPlainText(QString::number(scores));
+        timer->setInterval(timer->interval() * 0.9); // snake speed increases by 10%
+        qDebug() << "news speed = " << timer->interval() ;
     }
 }
 
