@@ -6,14 +6,34 @@
 #include <QKeyEvent>
 #include <QGraphicsTextItem>
 #include <string>
+#include <QGraphicsView>
+#include <QTimer>
 
 Game::Game(){
 
     scene = new QGraphicsScene();
 
     snakeHead = new SnakeHead();
+
+    QGraphicsView * view = new QGraphicsView(scene);
+
+    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    view->show();
+    boardWidth = 800;
+    boardHeight = 600;
+    gameObiectsSize = 20;
+    view->setFixedSize(boardWidth, boardHeight);
+
+    scene->setSceneRect(0, 0,boardWidth, boardHeight);
+    timer = new QTimer();
+    QObject::connect(timer, SIGNAL(timeout()), snakeHead, SLOT(move()));
+    QObject::connect(timer, SIGNAL(timeout()), this, SLOT(foodEaten()));
+    QObject::connect(snakeHead, SIGNAL(spacePressed()), this, SLOT(gamePause()));
+
     food = new Food();
-    border = new Border();
+    border = new Border(gameObiectsSize, gameObiectsSize, boardWidth - 40, boardHeight - 40);
     gamePaused = false;
     scores = 0;
     scoreViewer = new QGraphicsTextItem();
@@ -47,6 +67,10 @@ void Game::gamePause(){
         gamePaused = false;
         qDebug() << "game restarted";
     }
+}
+
+void Game::startGame(int gameSpeed){
+    timer->start(gameSpeed);
 }
 
 void Game::foodEaten(){

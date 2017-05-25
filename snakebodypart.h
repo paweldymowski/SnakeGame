@@ -3,19 +3,11 @@
 
 #include <QGraphicsPixmapItem>
 #include <QObject>
-//#include <QDebug>
-#include <QTimer>
-
 
 class SnakeBodyPart: public QObject, public QGraphicsPixmapItem{
 
 public:
-    int direction;
-    SnakeBodyPart(int x, int y);
-    //QTimer * timer;
-
+    SnakeBodyPart(int posX, int posY);
 };
-
-
 
 #endif // SNAKEBODYPART_H

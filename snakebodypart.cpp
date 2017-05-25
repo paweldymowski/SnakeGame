@@ -2,10 +2,10 @@
 #include <QDebug>
 #include <QPixmap>
 
-SnakeBodyPart::SnakeBodyPart(int x, int y){
+SnakeBodyPart::SnakeBodyPart(int posX, int posY){
 
     setPixmap(QPixmap(":/images/test.png"));
-    setPos(x, y);
+    setPos(posX, posY);
 
     qDebug() << "snakeBodyPart created";
 

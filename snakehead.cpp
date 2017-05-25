@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <iterator>
 #include <directions.h>
+#include <QGraphicsItem>
 
 SnakeHead::SnakeHead(){
 
@@ -14,6 +15,9 @@ SnakeHead::SnakeHead(){
     snakeTail.push_back(new SnakeBodyPart(x() - 60, y()));
     snakeTail.push_back(new SnakeBodyPart(x() - 40, y()));
     snakeTail.push_back(new SnakeBodyPart(x() - 20, y()));
+
+    setFlag(QGraphicsItem::ItemIsFocusable);
+    setFocus();
 
     foodEaten = false;
     keyPressed = false;

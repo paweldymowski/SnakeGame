@@ -18,10 +18,14 @@ public:
     QGraphicsScene * scene;
     Border * border;
     void createNewFood();
+    void startGame(int gameSpeed);
     QTimer * timer;
     bool gamePaused;
     int scores;
     QGraphicsTextItem * scoreViewer;
+    int boardWidth;
+    int boardHeight;
+    int gameObiectsSize;
 
 public slots:
     void foodEaten();
