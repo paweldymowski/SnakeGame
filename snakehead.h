@@ -14,11 +14,13 @@ class SnakeHead: public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
     SnakeHead();
+    ~SnakeHead();
     directions direction;
     bool foodEaten;
     bool keyPressed;
     void keyPressEvent(QKeyEvent * event);
     void updateTail();
+    void clearTail();
     void makeNewSnakePartVisible();
     std::vector<SnakeBodyPart*> snakeTail;
 
@@ -26,6 +28,7 @@ public slots:
     void move();
 signals:
     void spacePressed();
+    void snakeIsDead();
 };
 
 #endif // SNAKEHEAD_H

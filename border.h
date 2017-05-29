@@ -8,6 +8,7 @@ class Border: public QObject, public QGraphicsRectItem{
 
 public:
     Border(int posX, int posY, int width, int height);
+    ~Border();
 };
 
 #endif // BORDER_H

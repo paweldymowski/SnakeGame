@@ -28,7 +28,8 @@ SOURCES += main.cpp \
     border.cpp \
     food.cpp \
     snakebodypart.cpp \
-    game.cpp
+    game.cpp \
+    button.cpp
 
 HEADERS  += \
     snakehead.h \
@@ -36,7 +37,8 @@ HEADERS  += \
     food.h \
     snakebodypart.h \
     game.h \
-    directions.h
+    directions.h \
+    button.h
 
 RESOURCES += \
     res.qrc

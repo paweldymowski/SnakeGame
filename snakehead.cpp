@@ -23,8 +23,11 @@ SnakeHead::SnakeHead(){
     keyPressed = false;
     direction = moveRight;
 
-
     qDebug() << "snakeHead created";
+}
+
+SnakeHead::~SnakeHead(){
+    qDebug() << "snakehead destructed";
 }
 
 void SnakeHead::keyPressEvent(QKeyEvent *event)
@@ -114,17 +117,23 @@ void SnakeHead::move()
         pos().x() > 760)
 
     {
-        scene()->removeItem(this);
-        delete this;
-        qDebug() << pos().y() << "," << pos().x()  << "GAME OVER! Snake hit wall!";
+
+
+        clearTail();
+        qDebug() << "ogon skasowany";
+        emit snakeIsDead();
+        qDebug() << "GAME OVER! Snake hit wall!";
+        return;
     }
 
     std::vector<SnakeBodyPart*>::iterator it = snakeTail.begin();
 
     while (it != snakeTail.end()){
         if ((**it).pos() == pos() ){
-            scene()->removeItem(this);
-            delete this;
+
+            clearTail();
+            qDebug() << "ogon skasowany";
+            emit snakeIsDead();
             qDebug() << "GAME OVER! Snake hit own body!";
             break;
         };
@@ -132,3 +141,10 @@ void SnakeHead::move()
     }
     qDebug() << "head moved";
 }
+void SnakeHead::clearTail(){
+    for (size_t i = 0; i < snakeTail.size();i++){
+        delete snakeTail[i];
+    }
+    snakeTail.clear();
+}
+

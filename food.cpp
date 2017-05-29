@@ -16,4 +16,8 @@ Food::Food(){
     qDebug() << "food created on position " << randomNumber1 << " x " << randomNumber2;
 }
 
+Food::~Food(){
+    qDebug() << "food destructed";
+}
+
 

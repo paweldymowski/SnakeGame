@@ -8,6 +8,7 @@ class Food: public QObject, public QGraphicsPixmapItem {
 
 public:
     Food();
+    ~Food();
 };
 
 #endif // FOOD_H

@@ -7,4 +7,7 @@ Border::Border(int posX, int posY, int width, int height){
     qDebug() << "border created";
 }
 
+Border::~Border(){
+    qDebug() << "border destructed";
+}
 

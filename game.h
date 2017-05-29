@@ -21,16 +21,22 @@ public:
     void startGame(int gameSpeed);
     QTimer * timer;
     bool gamePaused;
+    bool firstGame;
     int scores;
     QGraphicsTextItem * scoreViewer;
     int boardWidth;
     int boardHeight;
     int gameObiectsSize;
+    int scoresForFood;
+
 
 public slots:
     void foodEaten();
     void gamePause();
-
+    void startGame();
+    void displayMenu();
+    void clearGame();
+    void close();
 };
 
 
