@@ -11,7 +11,7 @@ SnakeBodyPart::SnakeBodyPart(int posX, int posY){
 
 }
 SnakeBodyPart::~SnakeBodyPart(){
-    qDebug() << "snakebodypart destructed";
+    qDebug() << "snakeBodyPart destructed";
 }
 
 

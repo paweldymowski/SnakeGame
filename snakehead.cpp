@@ -65,7 +65,6 @@ void SnakeHead::keyPressEvent(QKeyEvent *event)
     }
 }
 
-
 void SnakeHead::updateTail(){
 
     if (!foodEaten) {
@@ -96,7 +95,7 @@ void SnakeHead::move()
 {
     updateTail();
     keyPressed = false;
-     qDebug() << "direction change reset";
+    qDebug() << "direction change reset";
 
     if (direction == moveUp){
         setPos(x(), y()-20);
@@ -117,10 +116,8 @@ void SnakeHead::move()
         pos().x() > 760)
 
     {
-
-
         clearTail();
-        qDebug() << "ogon skasowany";
+        qDebug() << "snake tail objects destructed";
         emit snakeIsDead();
         qDebug() << "GAME OVER! Snake hit wall!";
         return;
@@ -132,7 +129,7 @@ void SnakeHead::move()
         if ((**it).pos() == pos() ){
 
             clearTail();
-            qDebug() << "ogon skasowany";
+            qDebug() << "snake tail objects destructed";
             emit snakeIsDead();
             qDebug() << "GAME OVER! Snake hit own body!";
             break;

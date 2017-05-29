@@ -5,6 +5,7 @@
 
 
 Button::Button(QString name, QGraphicsItem *parent): QGraphicsRectItem(parent){
+
     setRect(0, 0, 200, 50);
     QBrush brush;
     brush.setStyle(Qt::SolidPattern);
@@ -18,10 +19,10 @@ Button::Button(QString name, QGraphicsItem *parent): QGraphicsRectItem(parent){
 
     setAcceptHoverEvents(true);
 }
+
 Button::~Button(){
     qDebug() << "button destructed";
 }
-
 
 void Button::mousePressEvent(QGraphicsSceneMouseEvent * event){
     emit clicked();

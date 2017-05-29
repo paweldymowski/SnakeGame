@@ -78,7 +78,7 @@ void Game::startGame(){
     QObject::connect(snakeHead, SIGNAL(snakeIsDead()), this, SLOT(clearGame()));
 
     timer->start(500);
-    qDebug() << "nowa gra rozpoczeta";
+    qDebug() << "new game started";
 }
 
 void Game::clearGame(){
@@ -88,7 +88,7 @@ void Game::clearGame(){
     delete border;
     delete scoreViewer;
 
-    qDebug() << "stara gra wyczyszczona";
+    qDebug() << "game objects deleted";
 }
 
 void Game::displayMenu(){
