@@ -4,7 +4,8 @@
 #include <QGraphicsScene>
 #include <QDebug>
 #include <iterator>
-#include <directions.h>
+#include "game.h"
+#include "directions.h"
 #include <QGraphicsItem>
 
 SnakeHead::SnakeHead(){

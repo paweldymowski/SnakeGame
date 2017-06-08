@@ -1,9 +1,9 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <food.h>
-#include <snakehead.h>
-#include <border.h>
+#include "food.h"
+#include "snakehead.h"
+#include "border.h"
 #include <QGraphicsScene>
 #include <QTimer>
 #include <QGraphicsTextItem>

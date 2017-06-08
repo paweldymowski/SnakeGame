@@ -1,14 +1,14 @@
-#include <game.h>
-#include <food.h>
-#include <snakehead.h>
-#include <snakebodypart.h>
+#include "game.h"
+#include "food.h"
+#include "snakehead.h"
+#include "snakebodypart.h"
 #include <QDebug>
 #include <QKeyEvent>
 #include <QGraphicsTextItem>
 #include <string>
 #include <QGraphicsView>
 #include <QTimer>
-#include <button.h>
+#include "button.h"
 
 Game::Game(){
 

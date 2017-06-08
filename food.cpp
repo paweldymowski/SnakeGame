@@ -1,6 +1,7 @@
 #include "food.h"
 #include <QDebug>
 #include <QPixmap>
+#include <random>
 
 Food::Food(){
     static std::random_device generator;

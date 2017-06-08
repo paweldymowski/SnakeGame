@@ -7,7 +7,7 @@
 class SnakeBodyPart: public QObject, public QGraphicsPixmapItem{
 
 public:
-    SnakeBodyPart(int posX, int posY);
+     SnakeBodyPart(int posX, int posY);
     ~SnakeBodyPart();
 };
 

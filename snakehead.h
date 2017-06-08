@@ -6,9 +6,9 @@
 #include <QDebug>
 #include <vector>
 #include <utility>
-#include <snakebodypart.h>
-#include <food.h>
-#include <directions.h>
+#include "snakebodypart.h"
+#include "food.h"
+#include "directions.h"
 
 class SnakeHead: public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
