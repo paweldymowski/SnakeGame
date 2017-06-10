@@ -3,7 +3,6 @@
 #include <QBrush>
 #include <QGraphicsTextItem>
 
-
 Button::Button(QString name, QGraphicsItem *parent): QGraphicsRectItem(parent){
 
     setRect(0, 0, 200, 50);

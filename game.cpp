@@ -121,7 +121,7 @@ void Game::displayMenu(){
     connect(quitButton, SIGNAL(clicked()), this, SLOT(close()));
     scene->addItem(quitButton);
 
-    qDebug() << "menu wyswietlone";
+    qDebug() << "menu displayed";
 }
 
 void Game::foodEaten(){
@@ -130,6 +130,7 @@ void Game::foodEaten(){
         qDebug() << "food eaten";
         snakeHead->foodEaten = true;
         scene->removeItem(food);
+        delete food;
         createNewFood();
         scores += scoresForFood;
         scoreViewer->setPlainText(QString::number(scores));

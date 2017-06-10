@@ -62,7 +62,6 @@ void SnakeHead::keyPressEvent(QKeyEvent *event)
             qDebug() << "space pressed";
             emit spacePressed();
         }
-
     }
 }
 
